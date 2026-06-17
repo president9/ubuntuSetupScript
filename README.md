@@ -15,7 +15,7 @@ sudo bash install.sh
 2. Install dev tools (git, cmake, ninja, pip, openssh)
 3. Download + install CUDA 13.3.0
 4. Clone + build llama.cpp (CUDA + RPC)
-5. Clone + build ComfyUI (comes with sageattention 1)
+5. Clone + build ComfyUI (includes SageAttention)
 
 ## After install
 ```bash
