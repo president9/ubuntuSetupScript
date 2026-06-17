@@ -79,10 +79,13 @@ if confirm "STEP 4: Clone & build llama.cpp (with CUDA + RPC support)?"; then
     -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc \
     -DCMAKE_BUILD_TYPE=Release
   cmake --build build --config Release -j"$(nproc)"
-
+  
+  # Used sudo to create so remove its sudoness
+  chown -R "$REAL_USER:$REAL_USER" "$REAL_HOME/llama.cpp"
+  
   # Persist to real user's bashrc
   append_bashrc "export PATH=\"$REAL_HOME/llama.cpp/build/bin:\$PATH\""
-
+  
   # Apply to current session
   export PATH="$REAL_HOME/llama.cpp/build/bin:$PATH"
 else
