@@ -109,6 +109,7 @@ if confirm "STEP 5: Clone & build ComfyUI (CUDA support) ?"; then
     pip install -r requirements.txt
     pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu132
     git clone https://github.com/ltdrdata/ComfyUI-Manager custom_nodes/comfyui-manager
+    pip install sageattention
     deactivate
   fi
 
