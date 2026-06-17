@@ -34,25 +34,33 @@ else
 fi
 
 # cuda
-if confirm "STEP 3: Download & install CUDA 13.3.0 (requires manual EULA acceptance) ?"; then
+if confirm "STEP 3: Download & install CUDA 13.3.0 (requires manual EULA acceptance)?"; then
+  cd "$REAL_HOME" || exit 1
   wget https://developer.download.nvidia.com/compute/cuda/13.3.0/local_installers/cuda_13.3.0_610.43.02_linux.run
-  sh cuda_13.3.0_610.43.02_linux.run
-  # Script pauses here for your EULA interaction, then continues automatically.
+  bash cuda_13.3.0_610.43.02_linux.run
+  # Persist CUDA to bashrc
+  echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+  echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}' >> ~/.bashrc
+  # Apply to current session so cmake can find nvcc in the next step
   export PATH=/usr/local/cuda/bin:$PATH
-  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 else
   echo "Skipped."
 fi
 
-#llama.cpp CUDA + RPC
-if confirm "STEP 4: Clone & build llama.cpp (with CUDA + RPC support) ?"; then
+# llama.cpp CUDA + RPC
+if confirm "STEP 4: Clone & build llama.cpp (with CUDA + RPC support)?"; then
   cd "$REAL_HOME" || exit 1
   git clone https://github.com/ggml-org/llama.cpp
   cd "$REAL_HOME/llama.cpp" || exit 1
-  cmake -B build -DGGML_CUDA=ON -DGGML_RPC=ON -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc -DCMAKE_BUILD_TYPE=Release
+  cmake -B build \
+    -DGGML_CUDA=ON \
+    -DGGML_RPC=ON \
+    -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc \
+    -DCMAKE_BUILD_TYPE=Release
   cmake --build build --config Release -j"$(nproc)"
   echo 'export PATH="$HOME/llama.cpp/build/bin:$PATH"' >> ~/.bashrc
-  source ~/.bashrc
+  export PATH="$REAL_HOME/llama.cpp/build/bin:$PATH"
 else
   echo "Skipped."
 fi
