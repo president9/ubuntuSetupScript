@@ -49,8 +49,8 @@ if confirm "STEP 4: Clone & build llama.cpp (with CUDA + RPC support) ?"; then
   cd "$REAL_HOME" || exit 1
   git clone https://github.com/ggml-org/llama.cpp
   cd "$REAL_HOME/llama.cpp" || exit 1
-  cmake -B build -DGGML_CUDA=ON -DGGML_RPC=ON -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc -DLLAMA_PERF=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
-  cmake --build build --config RelWithDebInfo -j"$(nproc)"
+  cmake -B build -DGGML_CUDA=ON -DGGML_RPC=ON -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc -DCMAKE_BUILD_TYPE=Release
+  cmake --build build --config Release -j"$(nproc)"
   echo 'export PATH="$HOME/llama.cpp/build/bin:$PATH"' >> ~/.bashrc
   source ~/.bashrc
 else
