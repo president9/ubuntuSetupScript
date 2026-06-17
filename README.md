@@ -23,6 +23,6 @@ source ~/.bashrc
 ```
 
 ##  Other remarks
-- TODO: Sage + flash attention support for ComfyUI
+- TODO: Sage attention support for ComfyUI
   
 The team and I have saved a lot of time using this script...
