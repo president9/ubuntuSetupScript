@@ -14,7 +14,8 @@ sudo bash install.sh
 1. Update packages + autoinstall GPU drivers *(reboot recommended after)*
 2. Install dev tools (git, cmake, ninja, pip, openssh)
 3. Download + install CUDA 13.3.0
-4. Clone + build llama.cpp (CUDA + RPC) 
+4. Clone + build llama.cpp (CUDA + RPC)
+5. Clone + build ComfyUI
 
 ## After install
 ```bash
@@ -22,4 +23,6 @@ source ~/.bashrc
 ```
 
 ##  Other remarks
+- TODO: Sage + flash attention support for ComfyUI
+  
 The team and I have saved a lot of time using this script...
