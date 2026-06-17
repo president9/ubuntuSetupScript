@@ -1,4 +1,4 @@
-# Local AI workspace installer
+# Local Gen AI workspace installer
 Automates building llama.cpp and ComfyUI on Ubuntu 22/24.04.
 
 ## Requirements
