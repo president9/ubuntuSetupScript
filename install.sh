@@ -51,6 +51,8 @@ if confirm "STEP 4: Clone & build llama.cpp (with CUDA + RPC support) ?"; then
   cd "$REAL_HOME/llama.cpp" || exit 1
   cmake -B build -DGGML_CUDA=ON -DGGML_RPC=ON -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc -DLLAMA_PERF=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
   cmake --build build --config RelWithDebInfo -j"$(nproc)"
+  echo 'export PATH="$HOME/llama.cpp/build/bin:$PATH"' >> ~/.bashrc
+  source ~/.bashrc
 else
   echo "Skipped."
 fi
