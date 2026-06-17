@@ -1,9 +1,9 @@
-# Local AI workspace installer (currently llama.cpp only)
-Automates building llama.cpp with CUDA + RPC support on Ubuntu 22/24.04.
+# Local AI workspace installer
+Automates building llama.cpp and ComfyUI on Ubuntu 22/24.04.
 
 ## Requirements
-- Ubuntu 22/24.04
-- CUDA-compatible NVIDIA GPU (required for default build)
+- Ubuntu 22/24.04 
+- CUDA-compatible NVIDIA GPU
 
 ## Usage
 ```bash
@@ -21,7 +21,5 @@ sudo bash install.sh
 source ~/.bashrc
 ```
 
-## Todo and Other remarks
-- ComfyUI installer
-  
+##  Other remarks
 The team and I have saved a lot of time using this script...
