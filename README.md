@@ -1,4 +1,4 @@
-# llama.cpp installer
+# Local AI workspace installer (currently llama.cpp only)
 Automates building llama.cpp with CUDA + RPC support on Ubuntu 22/24.04.
 
 ## Requirements
@@ -20,5 +20,8 @@ sudo bash install.sh
 ```bash
 source ~/.bashrc
 ```
-## Other remarks
+
+## Todo and Other remarks
+- ComfyUI installer
+  
 The team and I have saved a lot of time using this script...
