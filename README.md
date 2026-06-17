@@ -1,6 +1,9 @@
 # llama.cpp installer
-
 Automates building llama.cpp with CUDA + RPC support on Ubuntu 22/24.04.
+
+## Requirements
+- Ubuntu 22/24.04
+- CUDA-compatible NVIDIA GPU (required for default build)
 
 ## Usage
 ```bash
@@ -13,9 +16,9 @@ sudo bash install.sh
 3. Download + install CUDA 13.3.0
 4. Clone + build llama.cpp (CUDA + RPC) 
 
-Remember to source after step 3 and 4.
-
 ## After install
 ```bash
 source ~/.bashrc
 ```
+## Other remarks
+The team and I have saved a lot of time using this script...
