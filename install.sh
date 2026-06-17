@@ -39,6 +39,7 @@ if confirm "STEP 2: Install dev tools (git, build-essential, ninja, cmake, pip, 
   apt install -y cmake
   apt install -y python3-pip
   apt install -y openssh-server
+  apt install -y python3.12-venv
   snap install nvim --classic
 else
   echo "Skipped."
@@ -88,6 +89,30 @@ if confirm "STEP 4: Clone & build llama.cpp (with CUDA + RPC support)?"; then
   
   # Apply to current session
   export PATH="$REAL_HOME/llama.cpp/build/bin:$PATH"
+else
+  echo "Skipped."
+fi
+
+# ComfyUI CUDA
+if confirm "STEP 5: Clone & build ComfyUI (CUDA support) ?"; then
+  cd "$REAL_HOME" || exit 1
+
+  if [ -d "$REAL_HOME/ComfyUI" ]; then
+    echo "ComfyUI already exists, pulling latest..."
+    cd "$REAL_HOME/ComfyUI" && git pull
+    echo "You must update nodes manually"
+  else
+    git clone https://github.com/comfyanonymous/ComfyUI.git
+    cd "$REAL_HOME/ComfyUI" || exit 1
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu132
+    git clone https://github.com/ltdrdata/ComfyUI-Manager custom_nodes/comfyui-manager
+    deactivate
+  fi
+
+  chown -R "$REAL_USER:$REAL_USER" "$REAL_HOME/ComfyUI"
 else
   echo "Skipped."
 fi
